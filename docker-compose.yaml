@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: flask_backend
+    ports:
+      - "9000:9000"
+    env_file:
+      - ./backend/.env
+    restart: always
+
+  frontend:
+    build: ./frontend
+    container_name: flask_frontend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - backend
+    restart: always
+
